@@ -8,9 +8,9 @@
 int main() {
     srand(time(NULL)); // Inicializar la semilla aleatoria real
 
-    int nClusters = 8;
-    int nPointsPerCluster = 100; // ¡Un millón de puntos por cluster para un total de 16 millones de puntos!
-    int nDimensions = 4; // ¡Ahora puedes poner las dimensiones que quieras!
+    int nClusters = 32;
+    int nPointsPerCluster = 250000; // ¡Un millón de puntos por cluster para un total de 16 millones de puntos!
+    int nDimensions = 32; // ¡Ahora puedes poner las dimensiones que quieras!
 
     int nFilas = nClusters * nPointsPerCluster;
     int nCol = nDimensions;
