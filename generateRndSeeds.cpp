@@ -24,7 +24,7 @@ point2D getRandomPoint(float x0, float y0,float maxRadius, float minRadius = 0.0
 
 int main()
 {
-    int nClusters = 1;
+    int nClusters = 3;
     int nPointsPerCluster = 50;
 
     std::vector<point2D> data;
