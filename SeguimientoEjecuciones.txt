@@ -1,3 +1,6 @@
 Datos Entrada: 32 clusters, 32 dimensiones, 250.000 puntos por cluster
-V1.0 ----- g++ main.cpp DataLoader.cpp Statistics.cpp -o main -O2 -fopenmp ----- 20.7255 s 
-V1.0 ----- g++ main.cpp DataLoader.cpp Statistics.cpp -o main -O3 -march=native -ffast-math ----- 5.19327 s
+
+V1.0 ----- g++ main.cpp DataLoader.cpp Statistics.cpp KMeans.cpp -o main -O2 -fopenmp ----- ./main ----------------------------------------------------------------------------------------- 20.7255 segundos
+V1.0 ----- g++ main.cpp DataLoader.cpp Statistics.cpp KMeans.cpp -o main -O3 -march=native -ffast-math ----- ./main ------------------------------------------------------------------------ 5.19327 segundos
+V2.0 ----- g++ main.cpp DataLoader.cpp Statistics.cpp KMeans.cpp -o main -O3 -march=native -ffast-math ----- ./main ------------------------------------------------------------------------ 3.86071 segundos
+V3.0 ----- mpic++ main.cpp DataLoader.cpp KMeans.cpp Statistics.cpp -o main_mpi -O3 -march=native -ffast-math ----- mpirun --mca btl_vader_single_copy_mechanism none -np 4 ./main_mpi ----- 3.74304 segundos

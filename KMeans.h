@@ -15,6 +15,6 @@ class KMeans {
 
         //Fución principal que ejecutará el bucle. 
         //Devolverá los centroides finales y las asignaciones.
-        void run( const std::vector<float>& data, uint32_t rows, uint32_t cols, std::vector<float>& centroids, std::vector<uint32_t>& assignments);
+        void run( std::vector<float>& local_data, uint32_t cols, std::vector<float>& centroids, std::vector<uint32_t>& assignments, int rank, int size);
 
 };
