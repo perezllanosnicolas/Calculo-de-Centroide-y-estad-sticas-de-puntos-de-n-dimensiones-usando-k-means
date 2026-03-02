@@ -21,6 +21,12 @@ El objetivo principal de este proyecto es exprimir al máximo el hardware subyac
 3. **Paralelismo Bulk Synchronous (MPI):** Reducción de la latencia de red agrupando los puntos en "buzones" locales y utilizando comunicación colectiva (`MPI_Alltoallv`, `MPI_Allreduce`) una sola vez por iteración.
 4. **Multihilo Seguro (OpenMP):** Uso de buzones privados por hilo (Thread-local storage) y bloques `#pragma omp critical` para evitar *Race Conditions* manteniendo la CPU al 100% de uso.
 
+## 🎥 Simulación de la Arquitectura Distribuida
+
+![Animación K-Means Distribuido](docs/mpi_kmeans_architecture.gif)
+
+> **Nota visual:** Esta simulación en 2D muestra el comportamiento real de la red. Los **4 colores** representan las memorias RAM físicas de los **4 Nodos MPI** distintos. A medida que los centroides se mueven, los puntos viajan por la red cambiando de dueño (función `MPI_Alltoallv`) hasta alcanzar el equilibrio matemático.
+
 ## 📁 Estructura del Proyecto
 
 ```text

@@ -7,3 +7,5 @@ data/*
 
 # PERO mantener el archivo .gitkeep para que suba la carpeta vacía
 !data/.gitkeep
+# Ignorar la carpeta venv/ que contiene el entorno virtual de Python
+venv/

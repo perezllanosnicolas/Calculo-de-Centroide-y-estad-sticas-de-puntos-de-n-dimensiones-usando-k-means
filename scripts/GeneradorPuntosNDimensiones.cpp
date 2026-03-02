@@ -4,13 +4,14 @@
 #include <ctime>
 #include <cstdio>
 #include <limits>
+#include <random>
 
 int main() {
     srand(time(NULL)); // Inicializar la semilla aleatoria real
 
-    int nClusters = 32;
+    int nClusters = 16;
     int nPointsPerCluster = 250000; // ¡Un millón de puntos por cluster para un total de 16 millones de puntos!
-    int nDimensions = 32; // ¡Ahora puedes poner las dimensiones que quieras!
+    int nDimensions = 2; // ¡Ahora puedes poner las dimensiones que quieras!
 
     int nFilas = nClusters * nPointsPerCluster;
     int nCol = nDimensions;
@@ -25,14 +26,17 @@ int main() {
         }
     }
 
+    // Preparar el generador de Gauss (C++11)
+    std::mt19937 gen(42); // Semilla fija para reproducibilidad
+    std::normal_distribution<float> dist(0.0f, 1.2f); // Media 0, Desviación típica 1.2
+
     // 2. Generar los puntos alrededor de sus centroides correspondientes
     for(int i = 0; i < nClusters; i++) {
         for(int j = 0; j < nPointsPerCluster; j++) {
             int pointIndex = i * nPointsPerCluster + j;
             for(int d = 0; d < nCol; d++) {
-                // Desplazamiento aleatorio entre -2.0 y 2.0
-                float offset = -2.0f + 4.0f * ((float)rand() / RAND_MAX); 
-                data[pointIndex * nCol + d] = centroids[i * nCol + d] + offset;
+                // Ahora usamos la distribución normal en lugar del offset cuadrado
+                data[pointIndex * nCol + d] = centroids[i * nCol + d] + dist(gen);
             }
         }
     }
