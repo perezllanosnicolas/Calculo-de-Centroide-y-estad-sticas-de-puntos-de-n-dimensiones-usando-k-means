@@ -41,6 +41,8 @@ El objetivo principal de este proyecto es exprimir al máximo el hardware subyac
  ┣ 📜 Dockerfile    # Contenedor para ejecución aislada y reproducible
  ┗ 📜 README.md
 
+```
+
 ## ⚙️ Reproducibilidad y Ejecución
 
 Para garantizar que el código puede ser evaluado en cualquier sistema operativo sin lidiar con dependencias complejas de C++ y OpenMPI, el proyecto está completamente dockerizado.
