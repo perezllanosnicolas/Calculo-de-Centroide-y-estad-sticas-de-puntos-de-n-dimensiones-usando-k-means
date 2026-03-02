@@ -1,4 +1,4 @@
-# 🚀 High-Performance Distributed K-Means (C++)
+# High-Performance Distributed K-Means (C++)
 
 ![C++](https://img.shields.io/badge/C++-14%2B-blue.svg)
 ![OpenMPI](https://img.shields.io/badge/OpenMPI-Distributed_Memory-orange.svg)
@@ -7,7 +7,7 @@
 
 Este proyecto es una implementación de **Altas Prestaciones (HPC)** del algoritmo de clustering K-Means. Diseñado para procesar conjuntos de datos masivos aprovechando arquitecturas de **memoria distribuida (OpenMPI)** y **memoria compartida (OpenMP)**.
 
-## 📊 Rendimiento y Aceleración (Speedup)
+## Rendimiento y Aceleración (Speedup)
 
 El objetivo principal de este proyecto es exprimir al máximo el hardware subyacente. Partiendo de una implementación secuencial base, se han aplicado optimizaciones arquitectónicas severas:
 
@@ -22,13 +22,13 @@ El objetivo principal de este proyecto es exprimir al máximo el hardware subyac
 3. **Paralelismo Bulk Synchronous (MPI):** Reducción de la latencia de red agrupando los puntos en "buzones" locales y utilizando comunicación colectiva (`MPI_Alltoallv`, `MPI_Allreduce`) una sola vez por iteración.
 4. **Multihilo Seguro (OpenMP):** Uso de buzones privados por hilo (Thread-local storage) y bloques `#pragma omp critical` para evitar *Race Conditions* manteniendo la CPU al 100% de uso.
 
-## 🎥 Simulación de la Arquitectura Distribuida
+## Simulación de la Arquitectura Distribuida
 
 ![Animación K-Means Distribuido](docs/mpi_kmeans_architecture.gif)
 
 > **Nota visual:** Esta simulación en 2D muestra el comportamiento real de la red. Los **4 colores** representan las memorias RAM físicas de los **4 Nodos MPI** distintos. A medida que los centroides se mueven, los puntos viajan por la red cambiando de dueño (función `MPI_Alltoallv`) hasta alcanzar el equilibrio matemático.
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```text
 📦 HPC-Distributed-KMeans
@@ -42,8 +42,16 @@ El objetivo principal de este proyecto es exprimir al máximo el hardware subyac
  ┗ 📜 README.md
 
 ```
+## Topología de Ejecución Híbrida
 
-## ⚙️ Reproducibilidad y Ejecución
+![Arquitectura Híbrida MPI+OpenMP](docs/hybrid_architecture.gif)
+
+> **Flujo de Trabajo (BSP Model):** > 1. **(Azul) Distribución:** El dataset se reparte de forma equitativa entre los procesos aislados de OpenMPI (`MPI_Scatter`).
+> 2. **(Verde) Procesamiento:** Cada nodo despierta a sus hilos físicos mediante OpenMP (`#pragma omp parallel`) para calcular distancias simultáneamente con memoria compartida local.
+> 3. **(Rojo) Fusión:** Sincronización global y recolección de los datos optimizados (`MPI_Allreduce`).
+
+
+## Reproducibilidad y Ejecución
 
 Para garantizar que el código puede ser evaluado en cualquier sistema operativo sin lidiar con dependencias complejas de C++ y OpenMPI, el proyecto está completamente dockerizado.
 
@@ -74,5 +82,5 @@ make
 mpirun --mca btl_vader_single_copy_mechanism none -np 4 ./main_mpi
 ```
 
-## 📈 Cálculo Estadístico Distribuido (Map-Reduce)
+## Cálculo Estadístico Distribuido (Map-Reduce)
 Además del algoritmo K-Means, el sistema implementa un motor estadístico. Realiza dos pasadas óptimas por los datos segmentados en red para calcular **Mínimo, Máximo, Media y Varianza** de todas las dimensiones utilizando patrones de Map-Reduce (`MPI_Allreduce`) combinados con paralelismo híbrido OpenMP.
