@@ -21,7 +21,7 @@ int main(int argc, char** argv)
     // SOLO EL NODO 0 LEE EL ARCHIVO
     if (rank == 0) {
         std::cout << "Nodo 0: Cargando datos binarios..." << std::endl;
-        DataLoader::loadBinaryData("salida", data_global, rows, cols);
+        DataLoader::loadBinaryData("data/salida", data_global, rows, cols);
     }
 
     // El Nodo 0 avisa a los demás de las dimensiones

@@ -1,0 +1,9 @@
+# Ignorar binarios y ejecutables
+main_mpi
+generateRndSeeds
+
+# Ignorar todos los archivos generados en data/
+data/*
+
+# PERO mantener el archivo .gitkeep para que suba la carpeta vacía
+!data/.gitkeep

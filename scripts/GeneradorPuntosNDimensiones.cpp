@@ -50,7 +50,7 @@ int main() {
     }
 
     // 4. Escribir al archivo binario
-    FILE* resultsFile = fopen("salida", "wb");
+    FILE* resultsFile = fopen("data/salida", "wb");
     if(resultsFile) {
         fwrite(&nFilas, sizeof(int), 1, resultsFile);
         fwrite(&nCol, sizeof(int), 1, resultsFile);
