@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "DataLoader.h"
-// #include "Statistics.h"
+ #include "Statistics.h"
 #include "KMeans.h"
 
 int main(int argc, char** argv)
@@ -40,6 +40,18 @@ int main(int argc, char** argv)
     MPI_Scatter(send_buffer, local_rows * cols, MPI_FLOAT, 
                 local_data.data(), local_rows * cols, MPI_FLOAT,  
                 0, MPI_COMM_WORLD);
+
+    // Aplicar Estadísticas Híbridas (MPI + OpenMP)
+    if (rank == 0) {
+        std::cout << "Calculando Estadísticas del Dataset..." << std::endl;
+    }
+    
+    // Todos los nodos calculan su parte y la fusionan en red
+    Statistics::computeAndPrint(local_data, cols, rank, size);
+
+    // Preparar el algoritmo KMeans...
+
+
 
     // Preparar el algoritmo
     uint32_t k = 32; 

@@ -3,9 +3,7 @@
 #include <cstdint>
 
 class Statistics {
-    public: 
-        static float getMin(const std:: vector <float>& data, const uint32_t& rows, const uint32_t& cols);
-        static float getMax(const std:: vector <float>& data, const uint32_t& rows, const uint32_t& cols);
-        static float getMean(const std:: vector <float>& data, const uint32_t& rows, const uint32_t& cols);
-        static float getVariance(const std:: vector <float>& data, const uint32_t& rows, const uint32_t& cols);
+public:
+    // Calcula y muestra por pantalla las estadísticas de todas las dimensiones
+    static void computeAndPrint(const std::vector<float>& local_data, uint32_t cols, int rank, int size);
 };
