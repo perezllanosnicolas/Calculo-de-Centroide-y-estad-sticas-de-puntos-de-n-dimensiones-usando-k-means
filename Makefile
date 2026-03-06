@@ -12,7 +12,7 @@ TARGET = main_mpi
 GENERATOR_SRC = scripts/GeneradorPuntosNDimensiones.cpp
 GENERATOR_TARGET = GeneradorPuntosNDimensiones
 
-# Regla por defecto (compila todo)
+# Regla por defecto 
 all: $(TARGET) $(GENERATOR_TARGET)
 
 # 1. Compilar el programa principal (K-Means distribuido)

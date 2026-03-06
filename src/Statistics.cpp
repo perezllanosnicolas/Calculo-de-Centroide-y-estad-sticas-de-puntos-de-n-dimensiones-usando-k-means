@@ -112,9 +112,8 @@ void Statistics::computeAndPrint(const std::vector<float>& local_data, uint32_t 
         std::cout << "ESTADÍSTICAS GLOBALES POR DIMENSIÓN\n";
         std::cout << "------------------------------------------------\n";
         
-        // Imprimir las primeras dimensiones (ej. x, y, z o hasta 32 si quieres ver todo)
-        //int cols_to_print = (cols > 5) ? 5 : cols; 
-        int cols_to_print= cols; // Imprimir todas las dimensiones sin límite
+        // Imprimir las dimensiones
+        int cols_to_print= cols; 
 
 
         for (int k = 0; k < cols_to_print; k++) {
@@ -130,11 +129,6 @@ void Statistics::computeAndPrint(const std::vector<float>& local_data, uint32_t 
             std::cout << "  - Media   : " << global_mean[k] << std::endl;
             std::cout << "  - Varianza: " << global_variance[k] << std::endl;
         }
-/* 
-        if (cols > 5) {
-            std::cout << "\n  (Y así hasta la dimensión " << cols << "...)\n";
-        }
-*/
         std::cout << "------------------------------------------------\n\n";
     }
 }

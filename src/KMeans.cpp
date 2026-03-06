@@ -2,11 +2,11 @@
 #include <cmath> 
 #include <iostream>
 #include <limits>
-#include <algorithm> // para std::fill
+#include <algorithm>
 
 #include <mpi.h> // Para usar MPI dentro de KMeans 
 
-// 1. APLICACIÓN DE METAPROGRAMACIÓN (TEMA 1)
+// 1. APLICACIÓN DE METAPROGRAMACIÓN
 // Creamos una función plantilla (template) independiente. 
 // Al pasar DIM entre < >, el compilador conoce el tamaño y elimina el bucle for.
 template <uint32_t DIM>
@@ -20,7 +20,7 @@ inline float calcDistOptimized(const float* p1, const float* p2) {
     return sum; 
 }
 
-// Tu función original actúa como "fallback" genérico por si la dimensión no es 32 ni 4
+// Función original que actúa como "fallback" genérico por si la dimensión no es 32 ni 4
 float KMeans::calculateDistance(const float* p1, const float* p2, uint32_t cols) {
     float sum = 0.0f;
     for (uint32_t i = 0; i < cols; i++) {

@@ -9,9 +9,9 @@
 int main() {
     srand(time(NULL)); // Inicializar la semilla aleatoria real
 
-    int nClusters = 16;
-    int nPointsPerCluster = 250000; // ¡Un millón de puntos por cluster para un total de 16 millones de puntos!
-    int nDimensions = 2; // ¡Ahora puedes poner las dimensiones que quieras!
+    int nClusters = 32;
+    int nPointsPerCluster = 250000; // ¡250 000 de puntos por cluster para un total de 8 millones de puntos!
+    int nDimensions = 32; // 
 
     int nFilas = nClusters * nPointsPerCluster;
     int nCol = nDimensions;
@@ -35,7 +35,6 @@ int main() {
         for(int j = 0; j < nPointsPerCluster; j++) {
             int pointIndex = i * nPointsPerCluster + j;
             for(int d = 0; d < nCol; d++) {
-                // Ahora usamos la distribución normal en lugar del offset cuadrado
                 data[pointIndex * nCol + d] = centroids[i * nCol + d] + dist(gen);
             }
         }
